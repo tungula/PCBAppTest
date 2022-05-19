@@ -1,7 +1,9 @@
+import {useNavigation} from '@react-navigation/core';
 import {Formik} from 'formik';
 import React from 'react';
 import {BlurButton} from '../Components/BlurButton/BlurButton';
 import {BlurButtonVariant} from '../Constants/Enums';
+import {AuthStackGenericProp, RootStackGenericProp} from '../Navigation/types';
 
 import {Input} from '../Primitives/Input/Input';
 import {registrationSchema} from '../ValidationSchemas/AuthValidations';
@@ -15,14 +17,15 @@ export const AuthForm: React.FC<Props> = ({
    onSubmit = () => {},
    login = () => {},
 }) => {
+   const {push} = useNavigation<RootStackGenericProp<'MainStack'>>();
    return (
       <Formik
          initialValues={{
-            firstName: '',
-            lastName: '',
+            firstName: 'darsalia.david1998@gmail.com',
+            lastName: 'David.199*!',
          }}
          onSubmit={(values) => {
-            login(values.firstName, values.lastName);
+            onSubmit();
          }}
          validationSchema={registrationSchema}>
          {({
